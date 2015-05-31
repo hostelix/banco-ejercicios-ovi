@@ -10,6 +10,7 @@ void llenar_lista(Pila *pila, Cola *cola, Lista *lista);
 
 int main(int argc, char *argv[]) {
 	int op;
+	int generada_lista = 0;
 	Pila pila_docentes = NULL;
 	Cola cola_estudiantes = (Cola)malloc(sizeof(TCola));
 	cola_estudiantes->primero = NULL;
@@ -36,16 +37,26 @@ int main(int argc, char *argv[]) {
             break;
 			case 3:
 				llenar_lista(&pila_docentes,&cola_estudiantes,&lista);
-				mostrar_cola(&cola_estudiantes);
+				generada_lista = 1;
 			break;
 			case 4:
-                mostrar_lista(&lista,DOCENTE);
+                if(lista == NULL){
+                    printf("No hay personas registradas\n");
+                }
+                else{
+                    mostrar_lista(&lista,DOCENTE);
+                }
 			break;
 			case 5:
-                mostrar_lista(&lista,ESTUDIANTE);
+                if(lista == NULL){
+                    printf("No hay personas registradas\n");
+                }
+                else{
+                    mostrar_lista(&lista,ESTUDIANTE);
+                }
 			break;
 			case 6:
-                mostrar_lista(&lista,TODO);
+                (generada_lista)?(mostrar_lista(&lista,TODO)):(printf("No has seleccionado la opcion 3 del menu\n"));
 			break;
 			case 7:
 				exit(EXIT_SUCCESS);
